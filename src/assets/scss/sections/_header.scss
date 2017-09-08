@@ -1,0 +1,35 @@
+.header {
+  background: url(/static/images/hero-bg.jpg) no-repeat center;
+  background-size: cover;
+  padding: rem-calc(160 0 160 0);
+
+  h1 {
+    font-size: rem-calc(70);
+  }
+
+  h1, h2 { 
+    color: white;
+    font-family: $font-roboto; 
+    margin: 0;
+  }
+
+  &__logo-wrapper {
+    padding: rem-calc(10 0);
+  }
+
+    &__logo {
+      width: rem-calc(130); height: rem-calc(42);
+    }
+
+  &__title-box {
+    background-color: rgba(black, 0.6);
+    border: solid rem-calc(2) white;
+    padding: rem-calc(30);
+    text-align: center;
+    width: 25%;
+
+    &--top { 
+      border-bottom: none;
+    }
+  }
+}

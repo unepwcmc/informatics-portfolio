@@ -1,0 +1,29 @@
+//------------------------------------------------------------
+// logos
+//------------------------------------------------------------
+.logo--site {
+  width: rem-calc(200); height: rem-calc(65);
+}
+
+//------------------------------------------------------------
+// icons
+//------------------------------------------------------------
+.icon {
+  &--orange {
+    background-color: white;
+    color: $orange;
+  }
+
+  &--white {
+    color: white;
+  }
+
+  &--circle {
+    border: solid rem-calc(2) white;
+    border-radius: 100%;
+    font-size: rem-calc(30);
+    line-height: rem-calc(60);
+    width: rem-calc(60); height: rem-calc(60);
+    text-align: center;
+  }
+}

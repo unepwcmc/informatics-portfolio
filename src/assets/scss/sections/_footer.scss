@@ -1,0 +1,17 @@
+.footer {
+  background-color: $navy;
+  padding: rem-calc(10);
+  
+  &__content {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+    &__logo {
+      width: rem-calc(130); height: rem-calc(42);
+    }
+
+    &__contact {
+      color: white;
+    }
+}

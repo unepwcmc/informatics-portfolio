@@ -1,0 +1,15 @@
+//------------------------------------------------------------
+// breakpoint variables
+//------------------------------------------------------------
+$small: rem-calc(628); //mobile
+$medium: rem-calc(763); //tablet portrait
+$large: rem-calc(1024); //tablet landscape
+
+//------------------------------------------------------------
+// responsive mixins
+//------------------------------------------------------------
+@mixin breakpoint($breakpoint){
+  @media only screen and (min-width: $breakpoint + 1) {
+    @content;
+  }
+}

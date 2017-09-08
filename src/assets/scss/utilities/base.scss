@@ -1,0 +1,47 @@
+//------------------------------------------------------------
+// html elements
+//------------------------------------------------------------
+body {
+  font-family: $font-roboto;
+  margin: 0;
+}
+
+h2 {
+  color: $navy;
+  text-align: center;
+} 
+
+.h2 {
+  &--section {
+    font-family: $font-roboto-slab;
+    font-size: rem-calc(38);
+    margin-top: 0;
+    margin-bottom: rem-calc(44);
+  }
+}
+
+//------------------------------------------------------------
+// page structure
+//------------------------------------------------------------
+#app {
+  position: relative;
+}
+
+.site-width {
+  width: rem-calc(1200);
+}
+
+.site-container {
+  @extend .site-width;
+  margin: 0 auto;
+}
+
+.section {
+  padding: rem-calc(60 0 80 0);
+  
+  &--coloured {
+    background-color: $blue;
+
+    h2 { color: white; }
+  }
+}

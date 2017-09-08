@@ -1,0 +1,18 @@
+// utilities
+@import './utilities/variables';
+@import './utilities/media-queries';
+@import './utilities/rem-calc';
+@import './utilities/flexbox';
+@import './utilities/fonts';
+@import './utilities/base';
+
+// components
+@import './components/logos-and-icons';
+
+// sections
+@import './sections/header';
+@import './sections/story';
+@import './sections/work';
+@import './sections/clients';
+@import './sections/team';
+@import './sections/footer';
