@@ -143,15 +143,15 @@
         this.url = projectData.url
         this.image = projectData.image
 
-        // this.modalActive = true
+        this.modalActive = true
         document.getElementById('modal-wrapper').classList.add('projects__modal-wrapper--active')
 
-        var top = window.pageYOffset
-        console.log(top)
-        document.getElementById('modal-test').setAttribute('style', 'top: ' + top + 'px')
+        // var top = window.pageYOffset
+        // console.log(top)
+        // document.getElementById('modal-test').setAttribute('style', 'top: ' + top + 'px')
 
-        document.getElementById('test').classList.add('test--shrink')
-        document.getElementById('modal-test').classList.add('modal-test--open')
+        // document.getElementById('test').classList.add('test--shrink')
+        // document.getElementById('modal-test').classList.add('modal-test--open')
       },
 
       closeModal () {
