@@ -14,6 +14,10 @@
       }
     },
 
+    mounted () {
+      console.log(this.$store.state.modalIsActive)
+    },
+
     methods: {
       openModal () {
         this.isActive = !this.isActive
