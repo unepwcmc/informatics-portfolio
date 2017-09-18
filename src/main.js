@@ -9,6 +9,9 @@ import TeamMember from './components/TeamMember'
 
 Vue.config.productionTip = false
 
+// create event hub and export so that it can be imported into .vue files
+export const eventHub = new Vue()
+
 // create vue instance
 new Vue({
   el: '#app',

@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import { eventHub } from '../../main.js'
+
   export default {
     name: 'project',
 
@@ -29,6 +31,8 @@
 
     methods: {
       clickCard () {
+        console.log('project - clickCard')
+
         var projectData = {
           teaserTitle: this.teaserTitle,
           projectTitle: this.projectTitle,
@@ -38,7 +42,8 @@
           image: this.backgroundPath
         }
 
-        this.$emit('cardClicked', projectData)
+        this.$store.commit('updateModalData', projectData)
+        eventHub.$emit('cardClicked', projectData)
       }
     },
 

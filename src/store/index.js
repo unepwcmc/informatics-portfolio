@@ -1,14 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { eventHub } from '../main.js'
 
 Vue.use(Vuex)
 
 // create store
 export default new Vuex.Store({
   state: {
-    modalIsActive: false
+    isModalActive: false,
+    modalData: {}
   },
-  mutations: {
 
+  mutations: {
+    updateModalData (state, data) {
+      console.log('store - updateModalData')
+
+      this.isModalActive = true
+      this.modalData = data
+
+      eventHub.$emit('openModal')
+    }
   }
 })
