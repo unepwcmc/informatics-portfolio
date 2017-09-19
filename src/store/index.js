@@ -8,15 +8,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isModalActive: false,
-    modalData: {}
+    modalData: {
+      test: 'this is a test'
+    }
   },
 
   mutations: {
     updateModalData (state, data) {
-      console.log('store - updateModalData')
-
       this.isModalActive = true
       this.modalData = data
+
+      console.log('store - updateModalData', this.modalData)
 
       eventHub.$emit('openModal')
     }
