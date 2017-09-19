@@ -80,6 +80,10 @@
 
         this.modalData = this.$store.state.modalData
         this.isActive = !this.isActive
+      },
+
+      closeModal () {
+        this.isActive = !this.isActive
       }
     },
 
