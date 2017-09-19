@@ -12,8 +12,11 @@
         </div>
       </div>
 
+      {{ test }}
+
       <div class="row projects__modal-padding projects__modal__titles">
         <div class="col-xs">
+          <!-- <h3>{{ modalData.teaserTitle }}</h3> -->
           <h3>{{ modalData.teaserTitle }}</h3>
           <p>{{ modalData.projectTitle }}</p>
         </div>
@@ -47,6 +50,7 @@
 
 <script>
   import { eventHub } from '../main.js'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'modal',
@@ -58,14 +62,7 @@
         styleObject: {
           top: 0
         },
-        modalData: {
-          teaserTitle: '',
-          projectTitle: '',
-          problem: '',
-          solution: '',
-          url: '',
-          image: ''
-        }
+        modalData: this.$store.state.modalData
       }
     },
 
@@ -88,8 +85,8 @@
     },
 
     methods: {
-      openModal () {
-        console.log('modal - openModal')
+      openModal (data) {
+        // console.log('modal - openModal', data)
 
         // calculate modal offset
         const modalHeight = document.getElementById('modal').clientHeight
@@ -105,7 +102,7 @@
           this.modalOffset = window.pageYOffset
         }
 
-        console.log('modal - openModal - update data', this.$store.state.modalData)
+        // console.log('modal - openModal - update data', this.$store.state.modalData)
 
         this.modalData = this.$store.state.modalData
         this.isActive = !this.isActive
@@ -118,12 +115,9 @@
       }
     },
 
-    computed: {
-      // isActive () {
-      //   console.log('isModalActive', this.$store.state.isModalActive)
-      //   return this.$store.state.isModalActive
-      // }
-    }
+    computed: mapState({
+      test: state => state.test
+    })
   }
 </script>
 
@@ -135,7 +129,7 @@
     position: absolute;
     
     transform: translate(-50%);
-    transition: opacity .3s ease-out;
+    transition: opacity .2s ease-out;
 
     &--hidden { 
       z-index: -1;
