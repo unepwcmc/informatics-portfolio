@@ -2,7 +2,7 @@
   <div>
     <div class="modal-wrapper" :class="{ 'modal--active' : isActive }"></div>
 
-    <div id="modal" class="modal" :class="{ 'modal--active' : isActive }" :style="styleObject">
+    <div id="modal" class="modal" :class="{ 'modal--active' : isActive, 'modal--hidden' : !isActive }" :style="styleObject">
       MODAL
       <i class="projects__modal__close" @click="closeModal()">X</i>
         
@@ -76,6 +76,7 @@
     watch: {
       modalData () {
         console.log('modalData changed', this.$store.state.modalData)
+        this.modaData = this.$store.state.modalData
       },
 
       isModalActive () {
@@ -84,7 +85,6 @@
 
       modalOffset () {
         this.styleObject.top = this.modalOffset + 'px'
-        console.log('this.stylObject', this.styleObject)
       }
     },
 
@@ -134,6 +134,11 @@
     
     transform: translate(-50%);
     transition: opacity .3s ease-out;
+
+    &--hidden { 
+      height: 0; 
+      overflow: hidden; 
+    }
 
     &--active {
       background-color: white;
