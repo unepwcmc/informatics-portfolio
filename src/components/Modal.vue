@@ -1,42 +1,47 @@
 <template>
-  <div id="modal" class="modal" :class="{ 'modal--active' : isActive }">
-    MODAL
-    <i class="projects__modal__close" @click="closeModal()">X</i>
+  <div>
+    <div class="modal-wrapper" :class="{ 'modal--active' : isActive }"></div>
+
+    <div id="modal" class="modal" :class="{ 'modal--active' : isActive }" :style="styleObject">
+      MODAL
+      <i class="projects__modal__close" @click="closeModal()">X</i>
+        
+      <div class="row projects__modal__gallery">
+        <div class="col-xs">
+          <img :src="modalData.image" alt="">
+        </div>
+      </div>
+
+      <div class="row projects__modal-padding projects__modal__titles">
+        <div class="col-xs">
+          <h3>{{ modalData.teaserTitle }}</h3>
+          <p>{{ modalData.projectTitle }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs">
+          <div class="projects__modal__box projects__modal__box--grey">
+            <h4>The problem</h4>
+            <p>{{ modalData.problem }}</p>
+          </div>
+        </div>
+
+        <div class="col-xs">
+          <div class="projects__modal__box">
+            <h4>The solution</h4>
+            <p>{{ modalData.solution }}</p>
+          </div>
+        </div>
+      </div>
       
-    <div class="row projects__modal__gallery">
-      <div class="col-xs">
-        <img :src="modalData.image" alt="">
-      </div>
-    </div>
-
-    <div class="row projects__modal-padding projects__modal__titles">
-      <div class="col-xs">
-        <h3>{{ modalData.teaserTitle }}</h3>
-        <p>{{ modalData.projectTitle }}</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs">
-        <div class="projects__modal__box projects__modal__box--grey">
-          <h4>The problem</h4>
-          <p>{{ modalData.problem }}</p>
-        </div>
-      </div>
-
-      <div class="col-xs">
-        <div class="projects__modal__box">
-          <h4>The solution</h4>
-          <p>{{ modalData.solution }}</p>
+      <div class="row projects__modal-padding projects__modal__link">
+        <div class="col-xs">
+          <a :href="modalData.url">Visit site</a>
         </div>
       </div>
     </div>
-    
-    <div class="row projects__modal-padding projects__modal__link">
-      <div class="col-xs">
-        <a :href="modalData.url">Visit site</a>
-      </div>
-    </div>
+
   </div>
 </template>
 
@@ -49,6 +54,10 @@
     data () {
       return {
         isActive: false,
+        modalOffset: 0,
+        styleObject: {
+          top: 0
+        },
         modalData: {
           teaserTitle: '',
           projectTitle: '',
@@ -71,6 +80,11 @@
 
       isModalActive () {
         console.log('modal is now active')
+      },
+
+      modalOffset () {
+        this.styleObject.top = this.modalOffset + 'px'
+        console.log('this.stylObject', this.styleObject)
       }
     },
 
@@ -78,12 +92,28 @@
       openModal () {
         console.log('modal - openModal')
 
+        // calculate modal offset
+        const modalHeight = document.getElementById('modal').clientHeight
+        const windowHeight = window.innerHeight
+
+        // if the modal is smaller than the screen it is being viewed on
+        // then vertically centre it on the screen
+        if (modalHeight < windowHeight) {
+          const modalOffset = (windowHeight - modalHeight) / 2
+
+          this.modalOffset = window.pageYOffset + modalOffset
+        } else {
+          this.modalOffset = window.pageYOffset
+        }
+
         this.modalData = this.$store.state.modalData
         this.isActive = !this.isActive
+        document.getElementById('modal-site-content').classList.add('modal-site-content--shrink')
       },
 
       closeModal () {
         this.isActive = !this.isActive
+        document.getElementById('modal-site-content').classList.remove('modal-site-content--shrink')
       }
     },
 
@@ -99,21 +129,39 @@
 <style lang="scss">
   .modal { 
     opacity: 0;
-
-    transition: opacity .3s .4s linear;
+    width: 86%;
+    // max-width: $site-width;
+    
+    transform: translate(-50%);
+    transition: opacity .3s ease-out;
 
     &--active {
       background-color: white;
       position: absolute;
-      left: 0; right: 0;
+      left: 50%; right: 0;
 
       opacity: 1;
+
+      &.modal-wrapper {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    &-wrapper {
+      background-color: rgba(gray, 0.6);
+
+      display: none;
     }
   }
 
-  #test {
-    transition: transform .4s;
+  #modal-site-content {
+    transition: transform .2s ease-in;
 
-    &.test--shrink { transform: scale(0.8); }
+    &.modal-site-content--shrink { transform: scale(0.9); }
   }
 </style>

@@ -150,7 +150,7 @@
         console.log(top)
         document.getElementById('modal-test').setAttribute('style', 'top: ' + top + 'px')
 
-        document.getElementById('test').classList.add('test--shrink')
+        // document.getElementById('test').classList.add('test--shrink')
         document.getElementById('modal-test').classList.add('modal-test--open')
       },
 
