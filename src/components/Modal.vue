@@ -16,7 +16,6 @@
 
       <div class="row projects__modal-padding projects__modal__titles">
         <div class="col-xs">
-          <!-- <h3>{{ modalData.teaserTitle }}</h3> -->
           <h3>{{ modalData.teaserTitle }}</h3>
           <p>{{ modalData.projectTitle }}</p>
         </div>
@@ -75,10 +74,6 @@
         this.modalData = this.$store.state.modalData
       },
 
-      isModalActive () {
-        console.log('modal is now active')
-      },
-
       modalOffset () {
         this.styleObject.top = this.modalOffset + 'px'
       }
@@ -86,27 +81,27 @@
 
     methods: {
       openModal (data) {
-        // console.log('modal - openModal', data)
-
-        // calculate modal offset
-        const modalHeight = document.getElementById('modal').clientHeight
-        const windowHeight = window.innerHeight
-
-        // if the modal is smaller than the screen it is being viewed on
-        // then vertically centre it on the screen
-        if (modalHeight < windowHeight) {
-          const modalOffset = (windowHeight - modalHeight) / 2
-
-          this.modalOffset = window.pageYOffset + modalOffset
-        } else {
-          this.modalOffset = window.pageYOffset
-        }
-
-        // console.log('modal - openModal - update data', this.$store.state.modalData)
-
         this.modalData = this.$store.state.modalData
-        this.isActive = !this.isActive
-        document.getElementById('modal-site-content').classList.add('modal-site-content--shrink')
+
+        // delay calculating the modal height so that the data can update which will increase the height of the modal
+        window.setTimeout(() => {
+          // calculate modal offset
+          var modalHeight = document.getElementById('modal').clientHeight
+          var windowHeight = window.innerHeight
+
+          // if the modal is smaller than the screen it is being viewed on
+          // then vertically centre it on the screen
+          if (modalHeight < windowHeight) {
+            var modalOffset = (windowHeight - modalHeight) / 2
+
+            this.modalOffset = window.pageYOffset + modalOffset
+          } else {
+            this.modalOffset = window.pageYOffset
+          }
+
+          this.isActive = !this.isActive
+          document.getElementById('modal-site-content').classList.add('modal-site-content--shrink')
+        }, 100)
       },
 
       closeModal () {
@@ -125,11 +120,10 @@
   .modal { 
     opacity: 0;
     width: 86%;
-    // max-width: $site-width;
     position: absolute;
     
     transform: translate(-50%);
-    transition: opacity .2s ease-out;
+    transition: opacity .1s ease-out;
 
     &--hidden { 
       z-index: -1;
